@@ -6,6 +6,7 @@ header {
     min-height: 6rem;
 }
 main {
+    position: relative;
     margin: 2rem auto 2rem 15rem;
     width: 40rem;
 }

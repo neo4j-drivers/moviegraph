@@ -120,3 +120,10 @@ def match_movie(tx, title):
 ```bash
 FLASK_APP=answers/1/moviegraph flask run
 ```
+
+
+## Exercise 2: Add star ratings
+- Add clickable star rating to each movie
+- Add handler for POST requests to `/movie/<title>`
+- Add transaction function `set_movie_stars`
+ 

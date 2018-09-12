@@ -30,6 +30,18 @@ main {
 p.movie-tagline {
     margin: .25rem 0;
 }
+.movie-stars {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.movie-stars button {
+    border-width: 0;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
 
 /* Colour & Typography */
 body {
@@ -63,4 +75,16 @@ a:hover {
 .person-born {
     color: #666;
     font-style: italic;
+}
+.movie-stars {
+    font-size: 0;
+}
+.movie-stars button {
+    background-color: transparent;
+    font-size: 2rem;
+    color: goldenrod;
+    cursor: pointer;
+}
+.movie-stars button:hover {
+    color: darkgoldenrod;
 }
