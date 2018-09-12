@@ -24,6 +24,9 @@ main {
     border-width: 0;
     padding: .25rem 0;
 }
+.movie-summary {
+    position: relative;
+}
 .movie-title {
     margin: 1rem 0 .25rem 0;
 }
