@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{{ movie["title"] }} - Moviegraph</title>
+    <link href="{{ url_for("static", filename="movies.css") }}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<header>
+
+    <form class="movie-search" action="/">
+        <h1><a href="/">Moviegraph</a></h1>
+        <input name="q" value="{{ q }}" type="text" placeholder="Search" aria-label="Search">
+    </form>
+
+</header>
+
+<main>
+
+    <h1>{{ movie["title"] }} ({{ movie["released"] }})</h1>
+    <p class="movie-tagline">{{ movie["tagline"] }}</p>
+
+    <form class="movie-stars" method="POST">
+        <input name="stars" type="hidden">
+        {% for star in [1, 2, 3, 4, 5] %}
+            <button class="movie-star" onclick="stars.value={{ star }}">
+                {% if movie.get("stars", 0) < star %}
+                    &#x2606;
+                {% else %}
+                    &#x2605;
+                {% endif %}
+            </button>
+        {% endfor %}
+    </form>
+
+    <div class="movie-cast">
+        <h2>Cast</h2>
+        <ul>
+            {% for person in actors | sort(attribute="name") %}
+                <li><a href="/person/{{ person["name"] }}">{{ person["name"] }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</main>
+
+</body>
+
+</html>

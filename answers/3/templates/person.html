@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{{ person["name"] }} - Moviegraph</title>
+    <link href="{{ url_for("static", filename="movies.css") }}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<header>
+
+    <form class="movie-search" action="/">
+        <h1><a href="/">Moviegraph</a></h1>
+        <input name="q" value="{{ q }}" type="text" placeholder="Search" aria-label="Search">
+    </form>
+
+</header>
+
+<main>
+
+    <h1>{{ person["name"] }}</h1>
+    <p class="person-born">Born: {{ person["born"] }}</p>
+
+    <div class="person-filmography">
+        <h2>Filmography</h2>
+        <ul>
+            {% for movie in movies | sort(attribute="released", reverse=True) %}
+                <li><a href="/movie/{{ movie["title"] }}">{{ movie["title"] }} ({{ movie["released"] }})</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</main>
+
+</body>
+
+</html>

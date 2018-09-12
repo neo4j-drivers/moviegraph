@@ -15,7 +15,7 @@ driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "password"
 def match_movies(tx, q):
     if q:
         return tx.run("MATCH (movie:Movie) WHERE toLower(movie.title) CONTAINS toLower($term) "
-                      "RETURN movie ORDER BY movie.year DESCENDING, movie.title ASCENDING", term=q).value()
+                      "RETURN movie", term=q).value()
     else:
         return []
 
