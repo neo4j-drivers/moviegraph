@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Moviegraph</title>
+    <link href="{{ url_for("static", filename="movies.css") }}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<header>
+
+    <form class="movie-search" action="/">
+        <h1><a href="/">Moviegraph</a></h1>
+        <input name="q" value="{{ q }}" type="text" placeholder="Search" aria-label="Search">
+    </form>
+
+</header>
+
+<main>
+
+    <div class="movie-list">
+        {% for movie in movies %}
+            <div class="movie-summary">
+                <h1 class="movie-title"><a href="/movie/{{ movie["title"] }}">{{ movie["title"] }} ({{ movie["released"] }})</a></h1>
+                <p class="movie-tagline">{{ movie["tagline"] }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+</main>
+
+</body>
+
+</html>
