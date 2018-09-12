@@ -127,3 +127,7 @@ FLASK_APP=answers/1/moviegraph flask run
 - Add handler for POST requests to `/movie/<title>`
 - Add transaction function `set_movie_stars`
  
+ 
+## Exercise 3: Improve search page
+- Add stars to search results
+- Add _order by_ box

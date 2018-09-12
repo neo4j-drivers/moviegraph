@@ -12,10 +12,20 @@ app = Flask(__name__)
 driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "password"))
 
 
-def match_movies(tx, q):
+def match_movies(tx, q, order):
     if q:
-        return tx.run("MATCH (movie:Movie) WHERE toLower(movie.title) CONTAINS toLower($term) "
-                      "RETURN movie", term=q).value()
+        if order == "r":
+            query = "MATCH (movie:Movie) WHERE toLower(movie.title) CONTAINS toLower($term) " \
+                    "RETURN movie ORDER BY movie.released DESCENDING"
+        elif order == "p":
+            query = "MATCH (movie:Movie) WHERE toLower(movie.title) CONTAINS toLower($term) " \
+                    "RETURN movie ORDER BY coalesce(movie.stars, 0) DESCENDING"
+        elif order == "a":
+            query = "MATCH (movie:Movie) WHERE toLower(movie.title) CONTAINS toLower($term) " \
+                    "RETURN movie ORDER BY movie.title ASCENDING"
+        else:
+            return abort(400, "Bad order parameter")
+        return tx.run(query, term=q).value()
     else:
         return []
 
@@ -42,9 +52,10 @@ def get_index():
     """ Show the index page.
     """
     search_term = request.args.get("q", "")
+    order = request.args.get("order", "r")
     with driver.session() as session:
-        movies = session.read_transaction(match_movies, q=search_term)
-    return render_template("index.html", movies=movies, q=search_term)
+        movies = session.read_transaction(match_movies, q=search_term, order=order)
+    return render_template("index.html", movies=movies, q=search_term, order=order)
 
 
 @app.route("/movie/<title>")
@@ -54,7 +65,7 @@ def get_movie(title):
     with driver.session() as session:
         record = session.read_transaction(match_movie, title)
     if record is None:
-        abort(404, "Movie not found")
+        return abort(404, "Movie not found")
     return render_template("movie.html", movie=record["movie"], actors=record["actors"])
 
 
@@ -75,7 +86,7 @@ def get_person(name):
     with driver.session() as session:
         record = session.read_transaction(match_person, name)
     if record is None:
-        abort(404, "Person not found")
+        return abort(404, "Person not found")
     return render_template("person.html", person=record["person"], movies=record["movies"])
 
 
