@@ -35,7 +35,7 @@ p.movie-tagline {
     top: 0;
     right: 0;
 }
-.movie-stars button {
+.movie-star {
     border-width: 0;
     outline: 0;
     padding: 0;
@@ -79,12 +79,12 @@ a:hover {
 .movie-stars {
     font-size: 0;
 }
-.movie-stars button {
+.movie-star {
     background-color: transparent;
     font-size: 2rem;
     color: goldenrod;
     cursor: pointer;
 }
-.movie-stars button:hover {
+.movie-star:hover {
     color: darkgoldenrod;
 }
