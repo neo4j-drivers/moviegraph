@@ -3,7 +3,7 @@
 Moviegraph is a demo and training application for Python and Neo4j.
 
 
-## 1. Setup: Install Neo4j
+## Setup 1: Install Neo4j
 ```
 wget http://dist.neo4j.org/neo4j-community-3.4.1-unix.tar.gz
 tar xf neo4j-community-3.4.1-unix.tar.gz
@@ -13,7 +13,7 @@ bin/neo4j start|console
 ```
 
 
-## 2. Setup: Install a data set
+## Setup 2: Install a data set
 ```
 Browser to
 http://localhost:7474/
@@ -23,7 +23,7 @@ call db.schema
 ```
 
 
-## 3. Setup: Install application skeleton
+## Setup 3: Install application skeleton
 ```
 git clone ...
 virtualenv venv
@@ -36,13 +36,13 @@ FLASK_APP=moviegraph flask run
 If you want to use a different language, feel free to convert the code.
 
 
-## 4. Setup: Application in browser
+## Setup 4: Open the application
 ```
 http://127.0.0.1:5000
 ```
 
 
-## 5. Code: Project structure
+## Code walk 1: Project structure
 
 - `answers/` - all the answers!!
 - `static/` - static files (css)
@@ -52,20 +52,20 @@ http://127.0.0.1:5000
 - `requirements.txt` - project requirements
 
 
-### 6. Code: Flask setup code
+## Code walk 2: Flask setup code
 ```python
 from flask import Flask, abort, render_template, request
 app = Flask(__name__)
 ```
 
-### 7. Code: Neo4j driver setup code
+## Code walk 3: Neo4j driver setup code
 ```python
 from neo4j.v1 import GraphDatabase
 driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "password"))
 ```
 
 
-### 8. Code: GET index page
+## Code walk 4: GET index page
 ```python
 @app.route("/")
 def get_index():
@@ -78,7 +78,7 @@ def get_index():
 ```
 
 
-### 9. Code: `match_movies` transaction function
+## Code walk 5: `match_movies` transaction function
 ```python
 def match_movies(tx, q):
     if q:
@@ -89,7 +89,7 @@ def match_movies(tx, q):
 ```
 
 
-### 10. Code: GET movie page
+## Code walk 6: GET movie page
 ```python
 @app.route("/movie/<title>")
 def get_movie(title):
@@ -103,7 +103,7 @@ def get_movie(title):
 ```
 
 
-### 11. Code: `match_movie` transaction function
+## Code walk 7: `match_movie` transaction function
 ```python
 def match_movie(tx, title):
     return tx.run("MATCH (movie:Movie) WHERE movie.title = $title "
@@ -112,11 +112,11 @@ def match_movie(tx, title):
 ```
 
 
-### 12. Exercise: Add `person` pages
+## Exercise 1: Add `person` pages
 - Add links behind the movie cast list
 - Add a new page for `/person/<name>`
 - Add a new `person.html` template
 
 ```bash
-FLASK_APP=answers/12/moviegraph flask run
+FLASK_APP=answers/1/moviegraph flask run
 ```
