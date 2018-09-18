@@ -58,7 +58,7 @@ def get_index():
     return render_template("index.html", movies=movies, q=search_term, order=order)
 
 
-@app.route("/movie/<title>")
+@app.route("/movie/<path:title>")
 def get_movie(title):
     """ Display details of a particular movie.
     """
