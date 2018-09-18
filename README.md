@@ -28,11 +28,11 @@ bin/neo4j start
 
 ## Setup 2: Install a data set
 Open the Neo4j browser at `http://localhost:7474/`.
-Then start the Movie Graph guide by typing `:play movies` and pressing `[ENTER]` or clicking the ▶ _play_ button.
+Then start the Movie Graph guide by typing `:play movies` and pressing `[ENTER]` or clicking the `play ▶` button.
 Follow the instructions to create and explore the data set (but don't delete it as we'll need it later!)
 
 You can also view a "meta graph" that represents the data model itself, showing how node labels and relationship types are connected within the data set.
-To do this, run `call db.schema` and you should see output similar to the following:
+To do this, run `CALL db.schema` and you should see output similar to the following:
 
 ![Movie schema](art/movie-schema.png "Movie schema")
 
