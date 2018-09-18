@@ -34,7 +34,7 @@ $ bin/neo4j start
 
 The training requires installation of the Movie Graph data set, which comes bundled with Neo4j  
 
-Once the database is running, open the Neo4j browser at `http://localhost:7474/`.
+Once the database is running, open the Neo4j browser at [http://localhost:7474/].
 Then start the Movie Graph guide by typing `:play movies` and pressing `[ENTER]` or clicking the play button `(▶)`.
 Follow the instructions to create and explore the data set (but don't delete it as we'll need it later!)
 
@@ -44,7 +44,7 @@ To do this, run `CALL db.schema` and you should see output similar to the follow
 ![Movie schema](art/movie-schema.png "Movie schema")
 
 
-## Setup 3: Install training application
+## Setup 3: Install the training application
 
 This repository contains the application code used in the training.
 You'll need a local copy, which you can clone in the usual way:
@@ -61,15 +61,31 @@ And finally, install the project requirements:
 $ pip install -r requirements.txt
 ```
 
-If you want to use a different language, feel free to convert the code.
+The training material is written for Python, though it's perfectly possible to work with other languages.
+Available pre-built translations are listed below:
+
+- [.NET](https://github.com/neo4j-drivers/moviegraph-dotnet)
 
 
-## Setup 4: Open the application
+## Setup 4: Run the training application
+
+To enable a smooth development workflow, first enable the following environment variables for Flask:
+```bash
+$ export FLASK_DEBUG=1
+$ export FLASK_ENV=development
 ```
-export FLASK_DEBUG=1
-export FLASK_ENV=development
-FLASK_APP=moviegraph flask run
-http://127.0.0.1:5000
+The application can be started with 
+```bash
+$ FLASK_APP=moviegraph flask run
+```
+Once started, you can open the application at [http://127.0.0.1:5000].
+
+The repository also contains several other variants of the application.
+These contain answers for each of the exercises.
+To view these, simply change the value of `FLASK_APP` to point to the appropriate module.
+For example:
+```bash
+$ FLASK_APP=answers/1/moviegraph flask run
 ```
 
 
