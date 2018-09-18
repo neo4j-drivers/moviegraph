@@ -30,7 +30,7 @@ $ bin/neo4j start
 ```
 
 
-## Setup 2: Install a data set
+## Setup 2: Install the data set
 
 The training requires installation of the Movie Graph data set, which comes bundled with Neo4j  
 
@@ -78,7 +78,7 @@ The application can then be started with
 ```bash
 $ FLASK_APP=moviegraph flask run
 ```
-Once started, you can open the application at http://127.0.0.1:5000.
+Once started, you can open the application in a browser at http://127.0.0.1:5000.
 
 The repository also contains several other variants of the application.
 These contain answers for each of the exercises.
@@ -165,7 +165,7 @@ def match_movie(tx, title):
 - Add a new `person.html` template
 
 ```bash
-FLASK_APP=answers/1/moviegraph flask run
+$ FLASK_APP=answers/1/moviegraph flask run
 ```
 
 
@@ -173,8 +173,16 @@ FLASK_APP=answers/1/moviegraph flask run
 - Add clickable star rating to each movie
 - Add handler for POST requests to `/movie/<title>`
 - Add transaction function `set_movie_stars`
+
+```bash
+$ FLASK_APP=answers/2/moviegraph flask run
+```
  
  
 ## Exercise 3: Improve search page
 - Add stars to search results
 - Add _order by_ box
+
+```bash
+$ FLASK_APP=answers/3/moviegraph flask run
+```
