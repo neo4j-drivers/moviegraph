@@ -10,15 +10,15 @@ The first step is to download and install Neo4j (if you don't already have it).
 
 Download a Neo4j bundle:
 ```bash
-$ wget http://dist.neo4j.org/neo4j-community-3.4.1-unix.tar.gz
+$ wget http://dist.neo4j.org/neo4j-community-3.4.7-unix.tar.gz
 ```
 Unzip the archive:
 ```bash
-$ tar xf neo4j-community-3.4.1-unix.tar.gz
+$ tar xf neo4j-community-3.4.7-unix.tar.gz
 ```
 Step into the application directory:
 ```bash
-$ cd neo4j-community-3.4.1
+$ cd neo4j-community-3.4.7
 ```
 Set the initial password to `password`:
 ```bash
