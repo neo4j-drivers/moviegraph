@@ -179,9 +179,20 @@ $ FLASK_APP=answers/2/moviegraph flask run
 ```
  
  
-## Exercise 3: Improve search page
+## Exercise 3: Improve the search page
 - Add stars to search results
 - Add _order by_ box
+
+```bash
+$ FLASK_APP=answers/3/moviegraph flask run
+```
+ 
+ 
+## Exercise 4: Movie recommendations
+- Design a query to find movies that are similar to any given movie
+- List these as recommendations, with links, on the movie pages
+- Determine a way to rank these by similarity, and order the list from most similar to least similar
+
 
 ```bash
 $ FLASK_APP=answers/3/moviegraph flask run

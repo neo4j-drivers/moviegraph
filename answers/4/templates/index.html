@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Moviegraph</title>
+    <link href="{{ url_for("static", filename="movies.css") }}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<header>
+
+    <form class="movie-search" action="/">
+        <h1><a href="/">Moviegraph</a></h1>
+        <input name="q" value="{{ q }}" type="text" placeholder="Search" aria-label="Search">
+        <button>&#x1F50D;</button>
+        <select name="order">
+            <option value="r" {% if order == "r" %}selected="selected"{% endif %}>most recent first</option>
+            <option value="p" {% if order == "p" %}selected="selected"{% endif %}>most popular first</option>
+            <option value="a" {% if order == "a" %}selected="selected"{% endif %}>alphabetically</option>
+        </select>
+    </form>
+
+</header>
+
+<main>
+
+    <div class="movie-list">
+        {% for movie in movies %}
+            <div class="movie-summary">
+                <h1 class="movie-title"><a href="/movie/{{ movie["title"] }}">{{ movie["title"] }}
+                    ({{ movie["released"] }})</a></h1>
+                <p class="movie-tagline">{{ movie["tagline"] }}</p>
+
+                <div class="movie-stars">
+                    {% for star in [1, 2, 3, 4, 5] %}
+                        <span class="movie-star">
+                            {% if movie.get("stars", 0) < star %}
+                                &#x2606;
+                            {% else %}
+                                &#x2605;
+                            {% endif %}
+                        </span>
+                    {% endfor %}
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+
+</main>
+
+</body>
+
+</html>

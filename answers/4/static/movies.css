@@ -1,0 +1,126 @@
+/* Layout */
+body {
+    margin: 0;
+}
+header {
+    min-height: 6rem;
+}
+main {
+    position: relative;
+    margin: 2rem auto 2rem 15rem;
+    width: 40rem;
+}
+.movie-search {
+    height: 2rem;
+}
+.movie-search h1 {
+    position: absolute;
+    left: 2rem;
+    height: 2rem;
+    padding: auto 0;
+    vertical-align: middle;
+    margin: 2rem 0;
+}
+.movie-search input {
+    margin: 2rem auto 2rem 15rem;
+    width: 24rem;
+    border-width: 0;
+    vertical-align: middle;
+    padding: .25rem 0;
+}
+.movie-search select {
+    margin: 2rem 0 2rem 2rem;
+    width: 12rem;
+    border-width: 0;
+    vertical-align: middle;
+    padding: .25rem 0;
+}
+.movie-search button {
+    width: 2rem;
+    border-width: 0;
+    vertical-align: middle;
+    height: 100%;
+}
+.movie-summary {
+    position: relative;
+}
+.movie-title {
+    margin: 1rem 0 .25rem 0;
+}
+p.movie-tagline {
+    margin: .25rem 0;
+}
+.movie-stars {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.movie-star {
+    border-width: 0;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+/* Colour & Typography */
+body {
+    font-family: sans-serif;
+    font-size: 12pt;
+    line-height: 1.5rem;
+}
+header {
+    background-color: #CCC;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.movie-search {
+    font-size: 0;
+}
+.movie-search h1 {
+    font-size: 2rem;
+}
+.movie-search input {
+    font-size: 1.2rem;
+    background-color: white;
+}
+.movie-search select {
+    font-size: 1.2rem;
+    background-color: white;
+}
+.movie-search button {
+    font-size: 1.2rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+.movie-title {
+    font-size: 1.2rem;
+}
+.movie-released {
+    font-size: 90%;
+    color: #999;
+}
+.movie-tagline {
+    color: #666;
+    font-style: italic;
+}
+.person-born {
+    color: #666;
+    font-style: italic;
+}
+.movie-stars {
+    font-size: 0;
+}
+.movie-star {
+    background-color: transparent;
+    font-size: 2rem;
+    color: goldenrod;
+    cursor: pointer;
+}
+.movie-star:hover {
+    color: darkgoldenrod;
+}
