@@ -34,7 +34,7 @@ $ bin/neo4j start
 
 The training requires installation of the Movie Graph data set, which comes bundled with Neo4j  
 
-Once the database is running, open the Neo4j browser at [http://localhost:7474/].
+Once the database is running, open the Neo4j browser at http://localhost:7474/.
 Then start the Movie Graph guide by typing `:play movies` and pressing `[ENTER]` or clicking the play button `(▶)`.
 Follow the instructions to create and explore the data set (but don't delete it as we'll need it later!)
 
@@ -74,11 +74,11 @@ To enable a smooth development workflow, first enable the following environment 
 $ export FLASK_DEBUG=1
 $ export FLASK_ENV=development
 ```
-The application can be started with 
+The application can then be started with 
 ```bash
 $ FLASK_APP=moviegraph flask run
 ```
-Once started, you can open the application at [http://127.0.0.1:5000].
+Once started, you can open the application at http://127.0.0.1:5000.
 
 The repository also contains several other variants of the application.
 These contain answers for each of the exercises.
