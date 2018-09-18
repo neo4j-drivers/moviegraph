@@ -1,34 +1,41 @@
 # Moviegraph
 
-Moviegraph is a demo and training application for Python and Neo4j.
+_Moviegraph_ is a demo and training application for Python and Neo4j.
+The instructions below show how to get set up for the associated training material, part of which is contained within this repository.
 
 
 ## Setup 1: Install Neo4j
+
+The first step is to download and install Neo4j (if you don't already have it).
+
 Download a Neo4j bundle:
 ```bash
-wget http://dist.neo4j.org/neo4j-community-3.4.1-unix.tar.gz
+$ wget http://dist.neo4j.org/neo4j-community-3.4.1-unix.tar.gz
 ```
 Unzip the archive:
 ```bash
-tar xf neo4j-community-3.4.1-unix.tar.gz
+$ tar xf neo4j-community-3.4.1-unix.tar.gz
 ```
 Step into the application directory:
 ```bash
-cd neo4j-community-3.4.1
+$ cd neo4j-community-3.4.1
 ```
 Set the initial password to `password`:
 ```bash
-bin/neo4j-admin set-initial-password password
+$ bin/neo4j-admin set-initial-password password
 ```
-Start the server:
+And start the server:
 ```bash
-bin/neo4j start
+$ bin/neo4j start
 ```
 
 
 ## Setup 2: Install a data set
-Open the Neo4j browser at `http://localhost:7474/`.
-Then start the Movie Graph guide by typing `:play movies` and pressing `[ENTER]` or clicking the `play ▶` button.
+
+The training requires installation of the Movie Graph data set, which comes bundled with Neo4j  
+
+Once the database is running, open the Neo4j browser at `http://localhost:7474/`.
+Then start the Movie Graph guide by typing `:play movies` and pressing `[ENTER]` or clicking the play button `(▶)`.
 Follow the instructions to create and explore the data set (but don't delete it as we'll need it later!)
 
 You can also view a "meta graph" that represents the data model itself, showing how node labels and relationship types are connected within the data set.
@@ -37,21 +44,31 @@ To do this, run `CALL db.schema` and you should see output similar to the follow
 ![Movie schema](art/movie-schema.png "Movie schema")
 
 
-## Setup 3: Install application skeleton
+## Setup 3: Install training application
+
+This repository contains the application code used in the training.
+You'll need a local copy, which you can clone in the usual way:
+```bash
+$ git clone https://github.com/neo4j-drivers/moviegraph.git
 ```
-git clone ...
-virtualenv venv
-source venv/bin/activate
-pip install -r requirements.txt
-export FLASK_DEBUG=1
-export FLASK_ENV=development
-FLASK_APP=moviegraph flask run
+After that, you'll need to create and activate a virtual environment (this requires [virtualenv](https://virtualenv.pypa.io/en/stable/) to be installed):
+```bash
+$ virtualenv venv
+$ source venv/bin/activate
 ```
+And finally, install the project requirements:
+```bash
+$ pip install -r requirements.txt
+```
+
 If you want to use a different language, feel free to convert the code.
 
 
 ## Setup 4: Open the application
 ```
+export FLASK_DEBUG=1
+export FLASK_ENV=development
+FLASK_APP=moviegraph flask run
 http://127.0.0.1:5000
 ```
 
