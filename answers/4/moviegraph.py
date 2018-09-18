@@ -13,21 +13,18 @@ driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "password"
 
 
 def match_movies(tx, q, order):
-    if q:
-        if order == "r":
-            query = "MATCH (movie:Movie) WHERE toLower(movie.title) CONTAINS toLower($term) " \
-                    "RETURN movie ORDER BY movie.released DESCENDING"
-        elif order == "p":
-            query = "MATCH (movie:Movie) WHERE toLower(movie.title) CONTAINS toLower($term) " \
-                    "RETURN movie ORDER BY coalesce(movie.stars, 0) DESCENDING"
-        elif order == "a":
-            query = "MATCH (movie:Movie) WHERE toLower(movie.title) CONTAINS toLower($term) " \
-                    "RETURN movie ORDER BY movie.title ASCENDING"
-        else:
-            return abort(400, "Bad order parameter")
-        return tx.run(query, term=q).value()
+    if order == "r":
+        query = "MATCH (movie:Movie) WHERE toLower(movie.title) CONTAINS toLower($term) " \
+                "RETURN movie ORDER BY movie.released DESCENDING"
+    elif order == "p":
+        query = "MATCH (movie:Movie) WHERE toLower(movie.title) CONTAINS toLower($term) " \
+                "RETURN movie ORDER BY coalesce(movie.stars, 0) DESCENDING"
+    elif order == "a":
+        query = "MATCH (movie:Movie) WHERE toLower(movie.title) CONTAINS toLower($term) " \
+                "RETURN movie ORDER BY movie.title ASCENDING"
     else:
-        return []
+        return abort(400, "Bad order parameter")
+    return tx.run(query, term=q).value()
 
 
 def match_movie(tx, title):
@@ -60,8 +57,11 @@ def get_index():
     """
     search_term = request.args.get("q", "")
     order = request.args.get("order", "r")
-    with driver.session() as session:
-        movies = session.read_transaction(match_movies, q=search_term, order=order)
+    if search_term:
+        with driver.session() as session:
+            movies = session.read_transaction(match_movies, q=search_term, order=order)
+    else:
+        movies = []
     return render_template("index.html", movies=movies, q=search_term, order=order)
 
 

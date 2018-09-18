@@ -13,11 +13,8 @@ driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "password"
 
 
 def match_movies(tx, q):
-    if q:
-        return tx.run("MATCH (movie:Movie) WHERE toLower(movie.title) CONTAINS toLower($term) "
-                      "RETURN movie", term=q).value()
-    else:
-        return []
+    return tx.run("MATCH (movie:Movie) WHERE toLower(movie.title) CONTAINS toLower($term) "
+                  "RETURN movie", term=q).value()
 
 
 def match_movie(tx, title):
@@ -42,8 +39,11 @@ def get_index():
     """ Show the index page.
     """
     search_term = request.args.get("q", "")
-    with driver.session() as session:
-        movies = session.read_transaction(match_movies, q=search_term)
+    if search_term:
+        with driver.session() as session:
+            movies = session.read_transaction(match_movies, q=search_term)
+    else:
+        movies = []
     return render_template("index.html", movies=movies, q=search_term)
 
 
